@@ -151,4 +151,11 @@
     font-style: italic;
     margin-top: 0.5rem;
     margin-bottom: 0;
+}
+
+.lotr-cinzel {
+    font-family: 'Cinzel Decorative', cursive;
+    color: #bfa046;
+    text-shadow: 1px 1px 8px #000;
+    letter-spacing: 2px;
 } 

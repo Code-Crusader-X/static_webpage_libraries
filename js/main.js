@@ -65,7 +65,9 @@ $(document).ready(function() {
     // Charakter des Tages anzeigen
     $('#characterBtn').on('click', function() {
         const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-        $('#characterName').text(randomCharacter.name);
+        const $charTitle = $('#characterName');
+        $charTitle.text(randomCharacter.name);
+        $charTitle.addClass('lotr-cinzel');
         $('#characterImage').attr('src', randomCharacter.image);
         $('#characterDescription').text(randomCharacter.description);
         $('#characterQuote').text(randomCharacter.quote);
@@ -196,4 +198,7 @@ $(document).ready(function() {
             }, 1000);
         }
     });
+
+    // Sicherstellen, dass der Zitat-Titel immer die Klasse hat
+    $('#quoteModal .modal-title').addClass('lotr-cinzel');
 }); 
