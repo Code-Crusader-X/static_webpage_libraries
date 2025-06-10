@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+        "name": "Launch Chrome against file",
+        "type": "chrome",
+        "request": "launch",
+        "file": "${workspaceFolder}/index.html",
+        }
+    ]
+
+   
+
+
+}
