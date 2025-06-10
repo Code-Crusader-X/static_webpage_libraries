@@ -11,6 +11,7 @@
     <!-- Fantasy-Schrift (UnifrakturCook) für Herr der Ringe Feeling -->
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,9 +22,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <button class="btn btn-outline-warning lotr-fantasy ms-2" data-bs-toggle="modal" data-bs-target="#chronologyModal">Chronologische Reihenfolge</button>
-                    </li>
+                    <!-- Button für Chronologische Reihenfolge entfernt -->
                 </ul>
             </div>
         </div>
@@ -33,10 +32,6 @@
     <div class="intro text-center my-4">
         <h1 class="lotr-cinzel">Willkommen in Mittelerde</h1>
         <p class="lotr-quote">„Ein Ring, sie zu knechten, sie alle zu finden, ins Dunkel zu treiben und ewig zu binden."</p>
-        <div class="mt-3">
-            <button class="btn btn-outline-warning lotr-fantasy" id="randomQuoteBtn">Zufälliges Zitat</button>
-            <button class="btn btn-outline-warning lotr-fantasy ms-2" id="characterBtn">Charakter des Tages</button>
-        </div>
     </div>
 
     <div class="container mt-4">
@@ -46,45 +41,9 @@
                     <button type="button" class="btn btn-primary filter-button" data-filter="all">Alle</button>
                     <button type="button" class="btn btn-primary filter-button" data-filter=".lotr">Herr der Ringe</button>
                     <button type="button" class="btn btn-primary filter-button" data-filter=".hobbit">Der Hobbit</button>
-                    <button type="button" class="btn btn-danger" id="randomMovieBtn">Zufälliger Film</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Charakter-Info Modal -->
-        <div class="modal fade" id="characterModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark text-light">
-                    <div class="modal-header border-secondary">
-                        <h5 class="modal-title lotr-cinzel" id="characterName"></h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="text-center mb-3">
-                            <img id="characterImage" src="" alt="" class="img-fluid rounded" style="max-height: 300px;">
-                        </div>
-                        <p id="characterDescription"></p>
-                        <div class="mt-3">
-                            <h6 class="lotr-fantasy">Zitate:</h6>
-                            <p id="characterQuote" class="fst-italic"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Zitat Modal -->
-        <div class="modal fade" id="quoteModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark text-light">
-                    <div class="modal-header border-secondary">
-                        <h5 class="modal-title lotr-cinzel">Zitat des Tages</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="quoteText" class="fst-italic"></p>
-                        <p id="quoteAuthor" class="text-end mt-3"></p>
-                    </div>
+                    <button type="button" class="btn btn-danger filter-button" id="randomMovieBtn">Zufälliger Film</button>
+                    <button type="button" class="btn btn-danger filter-button" id="quoteOfDayBtn">Zitat des Tages</button>
+                    <button type="button" class="btn btn-danger filter-button" id="characterOfDayBtn">Character of the day</button>
                 </div>
             </div>
         </div>

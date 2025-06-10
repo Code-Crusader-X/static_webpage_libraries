@@ -1,89 +1,17 @@
+/**
+ * Hauptskript für die Film-Website
+ * 
+ * Hinweis zur Selektoren-Syntax:
+ * - $('.class') entspricht document.querySelectorAll('.class')
+ * - $('#id') entspricht document.querySelector('#id')
+ * - $('element') entspricht document.querySelectorAll('element')
+ * 
+ * Beispiel:
+ * jQuery: $('#movie-grid')
+ * Native: document.querySelector('#movie-grid')
+ */
+
 $(document).ready(function() {
-    // LOTR Charaktere und Zitate
-    const characters = [
-        {
-            name: "Gandalf der Graue",
-            image: "images/gandalf.jpg",
-            description: "Ein mächtiger Zauberer und Mitglied des Istari-Ordens. Als einer der Weisesten in Mittelerde spielt er eine zentrale Rolle im Kampf gegen Sauron.",
-            quote: "Alle, die wandern, sind nicht verloren."
-        },
-        {
-            name: "Aragorn",
-            image: "images/aragorn.jpg",
-            description: "Der rechtmäßige Erbe des Throns von Gondor und Arnor. Als Anführer der Dúnedain und später als König Elessar vereint er die Menschen von Mittelerde.",
-            quote: "Ich schwöre bei meinem Leben und meiner Liebe zu dir, dass ich dich nicht im Stich lassen werde."
-        },
-        {
-            name: "Galadriel",
-            image: "images/galadriel.jpg",
-            description: "Die mächtige Elbenkönigin von Lothlórien. Als eine der ältesten und weisesten Elben in Mittelerde besitzt sie große magische Kräfte.",
-            quote: "Selbst die kleinste Person kann den Lauf der Zukunft ändern."
-        }
-    ];
-
-    const quotes = [
-        {
-            text: "Es gibt immer Hoffnung.",
-            author: "- Aragorn"
-        },
-        {
-            text: "Nicht alle, die wandern, sind verloren.",
-            author: "- Gandalf"
-        },
-        {
-            text: "Ich wünschte, der Ring wäre nie zu mir gekommen. Ich wünschte, nichts davon wäre geschehen.",
-            author: "- Frodo Beutlin"
-        },
-        {
-            text: "Ein Hobbit? Bilbo Beutlin? Nun, das ist eine Überraschung!",
-            author: "- Gandalf"
-        },
-        {
-            text: "Manchmal sind die kleinsten Dinge die schwersten zu ertragen.",
-            author: "- Samweis Gamdschie"
-        }
-    ];
-
-    // Zufälliges Zitat anzeigen
-    $('#randomQuoteBtn').on('click', function() {
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        $('#quoteText').text(randomQuote.text);
-        $('#quoteAuthor').text(randomQuote.author);
-        
-        // Animation für das Modal
-        anime({
-            targets: '#quoteModal .modal-content',
-            translateY: [-50, 0],
-            opacity: [0, 1],
-            duration: 800,
-            easing: 'easeOutExpo'
-        });
-        
-        new bootstrap.Modal('#quoteModal').show();
-    });
-
-    // Charakter des Tages anzeigen
-    $('#characterBtn').on('click', function() {
-        const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-        const $charTitle = $('#characterName');
-        $charTitle.text(randomCharacter.name);
-        $charTitle.addClass('lotr-cinzel');
-        $('#characterImage').attr('src', randomCharacter.image);
-        $('#characterDescription').text(randomCharacter.description);
-        $('#characterQuote').text(randomCharacter.quote);
-        
-        // Animation für das Modal
-        anime({
-            targets: '#characterModal .modal-content',
-            translateY: [-50, 0],
-            opacity: [0, 1],
-            duration: 800,
-            easing: 'easeOutExpo'
-        });
-        
-        new bootstrap.Modal('#characterModal').show();
-    });
-
     // MixItUp Initialisierung
     var mixer = mixitup('#movie-grid', {
         animation: {
@@ -117,9 +45,9 @@ $(document).ready(function() {
         const movieTitle = selectedCard.find('.card-title').text();
         const movieYear = selectedCard.find('.card-text').text();
         
-        // Toast-Benachrichtigung erstellen
+        // Toast-Benachrichtigung erstellen (rechts oben, 10 Sekunden)
         const toast = `
-            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100;">
                 <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header bg-danger text-white">
                         <strong class="me-auto">Ihr Film für heute Abend:</strong>
@@ -132,17 +60,13 @@ $(document).ready(function() {
                 </div>
             </div>
         `;
-        
-        // Bestehende Toasts entfernen und neuen Toast hinzufügen
         $('.toast').remove();
         $('body').append(toast);
-        
-        // Toast nach 5 Sekunden ausblenden
         setTimeout(() => {
             $('.toast').fadeOut(500, function() {
                 $(this).remove();
             });
-        }, 5000);
+        }, 10000);
     });
 
     // Anime.js Animationen
@@ -199,6 +123,65 @@ $(document).ready(function() {
         }
     });
 
-    // Sicherstellen, dass der Zitat-Titel immer die Klasse hat
-    $('#quoteModal .modal-title').addClass('lotr-cinzel');
+    // Daten für Zitat des Tages und Character of the day
+    const quotes = [
+        "Nicht alle, die wandern, sind verloren. – Gandalf",
+        "Ein Ring, sie zu knechten, sie alle zu finden... – Tolkien",
+        "Selbst die kleinste Person kann den Lauf der Zukunft ändern. – Galadriel",
+        "Es gibt immer Hoffnung. – Aragorn",
+        "Manchmal sind die kleinsten Dinge die schwersten zu ertragen. – Samweis Gamdschie"
+    ];
+    const characters = [
+        { name: "Gandalf", info: "Ein mächtiger Zauberer und Mitglied des Istari-Ordens." },
+        { name: "Aragorn", info: "Der rechtmäßige Erbe des Throns von Gondor und Arnor." },
+        { name: "Frodo Beutlin", info: "Der Ringträger und Held aus dem Auenland." },
+        { name: "Galadriel", info: "Die Elbenkönigin von Lothlórien, weise und mächtig." },
+        { name: "Samweis Gamdschie", info: "Frodos treuer Freund und Begleiter." }
+    ];
+
+    // Funktion für Zitat des Tages (rechts oben, 10 Sekunden)
+    $('#quoteOfDayBtn').on('click', function() {
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        const toast = `
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-danger text-white">
+                        <strong class="me-auto">Zitat des Tages</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <span>${randomQuote}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('.toast').remove();
+        $('body').append(toast);
+        setTimeout(() => {
+            $('.toast').fadeOut(500, function() { $(this).remove(); });
+        }, 10000);
+    });
+
+    // Funktion für Character of the day (rechts oben, 10 Sekunden)
+    $('#characterOfDayBtn').on('click', function() {
+        const randomChar = characters[Math.floor(Math.random() * characters.length)];
+        const toast = `
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-danger text-white">
+                        <strong class="me-auto">Character of the day</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <b>${randomChar.name}</b><br>${randomChar.info}
+                    </div>
+                </div>
+            </div>
+        `;
+        $('.toast').remove();
+        $('body').append(toast);
+        setTimeout(() => {
+            $('.toast').fadeOut(500, function() { $(this).remove(); });
+        }, 10000);
+    });
 }); 

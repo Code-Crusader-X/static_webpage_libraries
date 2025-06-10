@@ -46,9 +46,15 @@
 
 /* MixItUp Filter-Buttons
    - Margin für Abstand zwischen Buttons
+   - Herr der Ringe-Schriftstil für ein thematisches Aussehen
 */
 .filter-button {
     margin: 5px;
+    font-family: 'UnifrakturCook', cursive;
+    letter-spacing: 1px;
+    color: #bfa046; /* Goldton für den Herr der Ringe-Stil */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Dezenter Schatten */
+    font-size: 1.1rem;
 }
 
 /* BOOTSTRAP CARD ERWEITERUNGEN
