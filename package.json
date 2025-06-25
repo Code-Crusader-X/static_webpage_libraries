@@ -1,16 +1,13 @@
 {
-  "name": "html-css",
+  "name": "Project",
   "version": "1.0.0",
-  "description": "A template for HTML and CSS",
+  "description": "Project",
   "main": "index.html",
   "scripts": {
     "start": "serve"
   },
-  "keywords": [
-    "html",
-    "css"
-  ],
-  "author": "Ives van Hoorne",
+  "keywords": ["html", "css"],
+  "author": "SauronsCodeOrcs",
   "license": "MIT",
   "devDependencies": {
     "serve": "11.2.0"
